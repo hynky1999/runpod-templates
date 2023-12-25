@@ -7,10 +7,13 @@ The environment variables that need to be set are:
 - S3_BUCKET: The name of your S3 bucket.
 - S3_FOLDER: The name of the folder in your S3 bucket that you want to sync with the Docker container.
 
-You have to run /scripts/upload_to_s3.sh to upload the files to S3. There is no automatic syncing of files between the Docker container and S3. 
+You have to run /scripts/upload_to_s3.sh to upload the files to S3. There is no automatic syncing of files between the Docker container and S3.
+If you find a better way let me know. I thought about trapping `SIGTERM`, but I believe runpod will kill the container in standard 10 seconds
+after no graceful shutdown, so I don't want to rely on the fact that the sync will be fast enough.
 
 ## AWS - Requirements
 It's expected that you will use the bucket with no public access. Please make sure that credentials have following appropirate access to bucket:
+
 Example:
 ```
 {
